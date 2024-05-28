@@ -3,7 +3,8 @@ using GlobalExceptionHandling;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(option => option.Filters.Add<CustomExceptionFilter>());
+//builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -13,6 +14,7 @@ if (!app.Environment.IsDevelopment())
     //app.UseExceptionHandler("/Home/Error");
     app.UseMiddleware<ExceptionHandlingMiddleware>();
 }
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseStaticFiles();
 
 app.UseRouting();

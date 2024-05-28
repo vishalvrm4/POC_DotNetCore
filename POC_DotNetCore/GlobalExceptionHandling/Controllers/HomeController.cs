@@ -15,6 +15,8 @@ namespace GlobalExceptionHandling.Controllers
 
         public IActionResult Index()
         {
+            int d = 1;
+            int i = 10 / --d;
             return View();
         }
 
